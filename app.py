@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import spacy
+import os
 
 from tensorflow.keras.models import load_model
 
@@ -44,4 +45,5 @@ def predict():
     return render_template('index.html', prediction_text=f'Predicted Intent: {predicted_intent}')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port, debug=True)
